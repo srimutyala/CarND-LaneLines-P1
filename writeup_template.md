@@ -1,9 +1,5 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Finding Lane Lines on the Road**
@@ -26,8 +22,6 @@ The goals / steps of this project are the following:
 My pipeline is made up of 3 main sections. The first section is a simple conversion to grayscale and an explicit call to a blurring function. The second section is involves a call to an edge detection function(canny in this case) to retrieve the edges of the image/frame. A fixed polygon(quad) is defined to mark the region of interest which I transform using Hough. As part of applying the Hough transform, I modified the 'draw_lines' helper function to accomodate the extrapolation of lane lines from individual segments to a single continbous line by first splitting the lines into left or right lane buckets & finding the average slope of each lines by wieghing the length of each segment.
 
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
 ![alt text][image1]
 
 
@@ -46,14 +40,9 @@ A few shortcomings were encountered and some were fixed before the initial submi
   Status: Pending. I could draw shorter lines such that the lines does not extend and intersect. But, that's not necessarily fixinf the problem rather than masking it. I believe this has to do with the parameters for the Hough transform which I haven't completely understood yet. I am going to read about the Hough transform and figure out a way to avoid that intersection.
   
   4. The Challenge.
-  Status. Pending. My current pipeline does not work for this. Part of it is because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list should help towards solving this. I am thinking of using a curve rather than 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+  Status. Pending. My current pipeline does not work for this. Part of it is because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list should help towards solving this. I am thinking of using a curve rather than a lineto track the lanes. I am new to Python and still figuring out the various functions that are avilable natively and  through the libraries.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+The improvements have been included in the shortcomings section.
