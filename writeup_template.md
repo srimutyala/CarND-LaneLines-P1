@@ -33,14 +33,13 @@ A few shortcomings were encountered and some were fixed before the initial submi
   Status: Fixed. I changed my approach from the above to finding the weighted average slope. This provided better tracking of the lane & drastic changes of line drawing from frame to frame.
   
  2. The region of interest is defined with fixed values.
-  Status: Pending. I will change this to a trapezoid with a generous  width on the x-axis based off a fixed percent of the image size. That should scale well for images of different resolutions.
+  Status: Fixed. I used a fixed region of interest for all 3 example videos. It worked fine for the first two and did not work with the challenge video. I changed my fixed region into a trapezoid with a generous width on the x-axis based off a fixed percent of the image size. This should now work well with inputs of different resolutions.
   
-  3. Lane line intersect.
-  Status: Pending. there is one spot(a frame or a few) in the 'SolidYellowLeft' file as the road curves where my pieline draws the lines such that they intersect.
-  Status: Pending. I could draw shorter lines such that the lines does not extend and intersect. But, that's not necessarily fixinf the problem rather than masking it. I believe this has to do with the parameters for the Hough transform which I haven't completely understood yet. I am going to read about the Hough transform and figure out a way to avoid that intersection.
+  3. Occasional incorrect lane tracking.
+  Status: Pending. There are a couple of spots(a frame or a few) in the 'SolidYellowLeft' file where my pipeline draws lines that are a little off of the actual lane markings. I am still looking into the reason why it does that.
   
   4. The Challenge.
-  Status. Pending. My current pipeline does not work for this. Part of it is because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list should help towards solving this. I am thinking of using a curve rather than a lineto track the lanes. I am new to Python and still figuring out the various functions that are avilable natively and  through the libraries.
+  Status. Pending. My current pipeline does not work well for this. Part of it was because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list helped greatly towards solving this. However, there is a section of the road where the lines go haywire though they return to normal after passing that section.But, unfortunately, we would have had a catastrophic crash by then. I think I understand where ths pipeline is being thrown off and I will look into addressing that.
 
 
 ### 3. Suggest possible improvements to your pipeline
