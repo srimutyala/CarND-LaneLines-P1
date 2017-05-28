@@ -2,24 +2,44 @@
 
 ---
 
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
 
 [//]: # (Image References)
 
 [image1]: ./examples/grayscale.jpg "Grayscale"
+[c1-RGB]: ./examples/challenge-1.jpeg "c1-HLS"
+[c1-HLS]: ./examples/challenge-1HLS.jpeg "c1-HLS"
+[c1-HSV]: ./examples/challenge-1inHSV.jpeg "c1-HSV"
+[c1-YUV]: ./examples/challenge-1inYUV.jpeg "c1-YUV"
+[c2-RBG]: ./examples/challenge-1inHLS.jpeg "c2-RGB"
+[c2-HLS]: ./examples/challenge-2inHLS.jpeg "c2-HLS"
+[c2-HSV]: ./examples/challenge-1inHSV.jpeg "c2-HSV"
+[c2-YUV]: ./examples/challenge-1inYUV.jpeg "c2-YUV"
 
 ---
 
-### Reflection
+### Introduction
+
+In this project, I used Python and OpenCV to track lane markings of three different roads. It consists of three imprtant sections which are described below.
+
+### Sections
+
+1. Image transformation
+
+This is probably the most important section of this project as this is where we setup a few transofrmations that will determine how robust the lane tracking shall be. Let me explain.
+
+A common practice is to take the RGB image/video frame and convert that into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achivied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
+
+[c1-RGB][c2-RGB]
+[c1-YUV][c2-YUV]
+[c1-HLS][c2-HLS]
+[c1-HSV][c2-HSV]
+
+
+
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline is made up of 3 main sections. The first section is a simple conversion to grayscale and an explicit call to a blurring function. The second section is involves a call to an edge detection function(canny in this case) to retrieve the edges of the image/frame. A fixed polygon(quad) is defined to mark the region of interest which I transform using Hough. As part of applying the Hough transform, I modified the 'draw_lines' helper function to accomodate the extrapolation of lane lines from individual segments to a single continbous line by first splitting the lines into left or right lane buckets & finding the average slope of each lines by wieghing the length of each segment.
+My pipeline is made up of 3 main sections. The first section is a conversion to the HSL  grayscale and an explicit call to a blurring function. The second section is involves a call to an edge detection function(canny in this case) to retrieve the edges of the image/frame. A fixed polygon(quad) is defined to mark the region of interest which I transform using Hough. As part of applying the Hough transform, I modified the 'draw_lines' helper function to accomodate the extrapolation of lane lines from individual segments to a single continbous line by first splitting the lines into left or right lane buckets & finding the average slope of each lines by wieghing the length of each segment.
 
 
 ![alt text][image1]
