@@ -23,7 +23,7 @@ In this project, I used Python and OpenCV to track lane markings of three differ
 
 ### Sections
 
-1. Image transformation
+###1. Image transformation
 
 This is probably the most important section of this project as this is where we setup a few transofrmations that will determine how robust the lane tracking shall be. Let me explain.
 
