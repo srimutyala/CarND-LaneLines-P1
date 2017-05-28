@@ -43,36 +43,39 @@ The below two images show the images when transofmed into the HSV space.The yell
 
 ![alt text][c1-HSV]![alt text][c2-HSV]
 
-The below images show the HSL transofrmations of our original images. We can see that the yellow lanenow shows up a white line with a bluish overlay. Though it also suffers from a lack of contrast as the lane approaches the white section, this image(& transformation provided better results.
+The below images show the HSL transofrmations of our original images. We can see that the yellow lanenow shows up a white line with a bluish overlay. Though it also suffers from a lack of contrast as the lane approaches the white section, this image(& transformation provided better results without significant hurdles to overcome.
 
 ![alt text][c1-HLS]![alt text][c2-HLS]
 
-
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
-
-My pipeline is made up of 3 main sections. The first section is a conversion to the HSL  grayscale and an explicit call to a blurring function. The second section is involves a call to an edge detection function(canny in this case) to retrieve the edges of the image/frame. A fixed polygon(quad) is defined to mark the region of interest which I transform using Hough. As part of applying the Hough transform, I modified the 'draw_lines' helper function to accomodate the extrapolation of lane lines from individual segments to a single continbous line by first splitting the lines into left or right lane buckets & finding the average slope of each lines by wieghing the length of each segment.
+We now apply the appropriate color filter to filter as much as the non-lane marking features and convert to a grayscale image. The website http://colorizer.org/ can be very handy when adjusting the channel values manually and if you wnat to see how they correspond to different color spaces.
 
 
-![alt text][image1]
+2. Edge Detection
+With the right color space selected, we apply an edge detection filter(I used Canny for this project) to retrieve the edges. We also apply a gaussian blurring filter to smooth the images before passing through the Canny filter.
 
+3. Hough Transform
+We now define a region of interest for our edges image and pass that along to Hough transform. We use the lines returned from this transofrmation to draw lines on the image.
 
-### 2. Identify potential shortcomings with your current pipeline
+To extrapolate the lines all the way, I made some changes to the 'draw_lines' method. First, I classified the lines into two buckets, left lane and right lane. I then calculated the slopes of each of tjose lines. I filtered out outliers from the slopes as debris on the road can looks like edges and hence could be used to draw the lane markings which could skew the lines. To avoid a lot of the jittery affect on the lane marking going from frame to frame, I calculated an average slope weighing in the length of the individual segments.
 
-A few shortcomings were encountered and some were fixed before the initial submission. Below is the list, their status & how I plan to overcome them in the near future.
+### Room for improvement
+
+A few shortcomings were encountered and though some were fixed before the initial submission a few remain Below is the list, their status & how I plan to overcome them in the near future.
 
 1. A line was drawn from the max Y point on a lane to the min Y point of a lane. This resulted in a lane that did not track the lane properly.
-  Status: Fixed. I changed my approach from the above to finding the weighted average slope. This provided better tracking of the lane & drastic changes of line drawing from frame to frame.
+  Status: Fixed. I changed my approach from the above to finding the weighted average slope. This provided better tracking of the lane &  avoided drastic changes in the line draw from frame to frame.
   
  2. The region of interest is defined with fixed values.
-  Status: Fixed. I used a fixed region of interest for all 3 example videos. It worked fine for the first two and did not work with the challenge video. I changed my fixed region into a trapezoid with a generous width on the x-axis based off a fixed percent of the image size. This should now work well with inputs of different resolutions.
+  Status: Fixed. I used a fixed region of interest for all 3 example videos. It worked fine for the first two and did not work with the challenge video. I changed my fixed region to a trapezoid with a generous width on the x-axis based off a fixed percent of the image size. This should now work well with inputs of different resolutions.
   
-  3. Occasional incorrect lane tracking.
-  Status: Pending. There are a couple of spots(a frame or a few) in the 'SolidYellowLeft' file where my pipeline draws lines that are a little off of the actual lane markings. This is due to a horizontal white line on the yellow lane marker at 0:11 sec on the video. The fix is to look at the slopes on all the lines on each side and remove the outliers.
+  3. Incorrect lane tracking.
+  Status: Pending. There is one spot(a frame or a few) in the 'SolidYellowLeft' file where my pipeline draws the right lane line that is a little off of the actual lane markings(Check 0:11 in the output video). I believe this is due to a horizontal white line on the yellow lane marker. I hoped to overcome that by excluding the outliers but it still remains. Any suggestions for improvement is appreciated.
+  
   
   4. The Challenge.
-  Status. Pending. My current pipeline does not work well for this. Part of it was because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list helped greatly towards solving this. However, there is a section of the road where the lines go haywire though they return to normal after passing that section.But, unfortunately, we would have had a catastrophic crash by then. I think I understand where ths pipeline is being thrown off and I will look into addressing that.
+  Status. Fixed. My original pipeline did not work well for this. Part of it was because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list helped greatly towards solving this. However, there is a section of the road where the lines went haywire though they return to normal after passing that section.But, unfortunately, we would have had a catastrophic crash by then. Changing the color space provided better tracking over this patch of the road.
 
+### Conclusion
+My pieline tracks the lane marking for the provided test cases very well. It also handles smaller curvatures in the road & different road conditions.
 
-### 3. Suggest possible improvements to your pipeline
-
-The improvements have been included in the shortcomings section.
+There could be some more improvements made if I can use curves instead of lines to track the lane markings
