@@ -29,15 +29,21 @@ This is probably the most important section of this project as this is where we 
 
 A common practice is to take the RGB image/video frame and convert that into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achivied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
 
-The below two images show a captured frame form the 'challenge.mp4' video with the chnage in road color for a section of the bridge
-![alt text][c1-RGB]![alt text][c2-RGB]
-The below two images show how those two images looks like in the YUV space. In the first of these two images, the yellow line(marked as pink here) is prominent but as the line approaches the white section of the road, it's not easily distinguishable. 
-![alt text][c1-YUV]![alt text][c2-YUV]
-The below two images show the images when transofmed into the HSV space.The yellow lane markings show similar pattern in this space but the white lane gets lost on the white section of the road(second image)
-![alt text][c1-HSV]![alt text][c2-HSV]
-The below images show the HSL transofrmations of our original images. We can see that the yellow lanenow shows up a white line with a bluish overlay. Though it also suffers from a lack of contrast as the lane approaches the white section, this image(& transformation provided better results. 
-![alt text][c1-HLS]![alt text][c2-HLS]
+The below two images show a captured frame form the 'challenge.mp4' video with the chnage in road color for a section of the bridge.
 
+![alt text][c1-RGB]![alt text][c2-RGB]
+
+The below two images show how those two images looks like in the YUV space. In the first of these two images, the yellow line(marked as pink here) is prominent but as the line approaches the white section of the road, it's not easily distinguishable. 
+
+![alt text][c1-YUV]![alt text][c2-YUV]
+
+The below two images show the images when transofmed into the HSV space.The yellow lane markings show similar pattern in this space but the white lane gets lost on the white section of the road(second image)
+
+![alt text][c1-HSV]![alt text][c2-HSV]
+
+The below images show the HSL transofrmations of our original images. We can see that the yellow lanenow shows up a white line with a bluish overlay. Though it also suffers from a lack of contrast as the lane approaches the white section, this image(& transformation provided better results.
+
+![alt text][c1-HLS]![alt text][c2-HLS]
 
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
