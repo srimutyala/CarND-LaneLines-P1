@@ -69,13 +69,13 @@ A few shortcomings were encountered and though some were fixed before the initia
   Status: Fixed. I used a fixed region of interest for all 3 example videos. It worked fine for the first two and did not work with the challenge video. I changed my fixed region to a trapezoid with a generous width on the x-axis based off a fixed percent of the image size. This should now work well with inputs of different resolutions.
   
   3. Incorrect lane tracking.<br/>
-  Status: Pending. There is one spot(a frame or a few) in the 'SolidYellowLeft' file where my pipeline draws the right lane line that is a little off of the actual lane markings(Check 0:11 in the output video). I believe this is due to a horizontal white line on the yellow lane marker. I hoped to overcome that by excluding the outliers but it still remains. Any suggestions for improvement is appreciated.
+  Status: Pending. There is one spot (a frame or a few) in the 'SolidYellowLeft' file where my pipeline draws the right lane line that is a little off of the actual lane markings (Check 0:11 in the output video). I believe this is due to a horizontal white line on the yellow lane marker. I hoped to overcome that by excluding the outliers but it still remains. Any suggestions for improvement is appreciated.
   
   
   4. The Challenge.<br/>
-  Status. Fixed. My original pipeline did not work well for this. Part of it was because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list helped greatly towards solving this. However, there is a section of the road where the lines went haywire though they return to normal after passing that section.But, unfortunately, we would have had a catastrophic crash by then. Changing the color space provided better tracking over this patch of the road.
+  Status. Fixed. My original pipeline did not work well for this. Part of it was because of the fixed definition of my region of interest ignoring certain parts of the lane. Fixing item #2 on this list helped greatly towards solving this. However, there was a section of the road where the lines went haywire though they return to normal after passing that section. But, unfortunately, we would have had a catastrophic crash by then. Changing the color space with the correct filters applied provided better tracking over this patch of the road.
 
 ### Conclusion
 My pieline tracks the lane marking for the provided test cases very well. It also handles smaller curvatures in the road & different road conditions.
 
-There could be some more improvements made if I can use curves instead of lines to track the lane markings
+There could be some more improvements made if I can use curves instead of lines to track the lane markings.
