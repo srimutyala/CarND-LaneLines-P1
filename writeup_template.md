@@ -6,11 +6,11 @@
 [//]: # (Image References)
 
 [image1]: ./examples/grayscale.jpg "Grayscale"
-[c1-RGB]: ./examples/challenge-1.jpg "c1-HLS"
+[c1-RGB]: ./examples/challenge-1.JPG "c1-HLS"
 [c1-HLS]: ./examples/challenge-1HLS.jpeg "c1-HLS"
 [c1-HSV]: ./examples/challenge-1inHSV.jpeg "c1-HSV"
 [c1-YUV]: ./examples/challenge-1inYUV.jpeg "c1-YUV"
-[c2-RGB]: ./examples/challenge-2.jpg "c2-RGB"
+[c2-RGB]: ./examples/challenge-2.JPG "c2-RGB"
 [c2-HLS]: ./examples/challenge-2inHLS.jpeg "c2-HLS"
 [c2-HSV]: ./examples/challenge-2inHSV.jpeg "c2-HSV"
 [c2-YUV]: ./examples/challenge-2inYUV.jpeg "c2-YUV"
