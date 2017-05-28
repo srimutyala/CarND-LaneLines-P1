@@ -27,13 +27,13 @@ In this project, I used Python and OpenCV to track lane markings of three differ
 
 This is probably the most important section of this project as this is where we setup a few transofrmations that will determine how robust the lane tracking shall be. Allow me to explain.
 
-A common practice is to take the RGB image/video frame and convert that into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achivied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
+A common practice is to take the RGB image/video frame and convert it into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achievied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can sometime transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
 
-The below two images show a captured frame form the 'challenge.mp4' video with the chnage in road color for a section of the bridge.
+The below two images show a captured frame form the 'challenge.mp4' video with the change in road color for a section of the bridge.
 
 ![alt text][c1-RGB]![alt text][c2-RGB]
 
-
+<br/>
 
 The below two images show how those two images looks like in the YUV space. In the first of these two images, the yellow line(marked as pink here) is prominent but as the line approaches the white section of the road, it's not easily distinguishable. 
 
