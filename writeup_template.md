@@ -33,6 +33,8 @@ The below two images show a captured frame form the 'challenge.mp4' video with t
 
 ![alt text][c1-RGB]![alt text][c2-RGB]
 
+
+
 The below two images show how those two images looks like in the YUV space. In the first of these two images, the yellow line(marked as pink here) is prominent but as the line approaches the white section of the road, it's not easily distinguishable. 
 
 ![alt text][c1-YUV]![alt text][c2-YUV]
