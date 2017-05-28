@@ -25,7 +25,7 @@ In this project, I used Python and OpenCV to track lane markings of three differ
 
 ### 1. Image transformation
 
-This is probably the most important section of this project as this is where we setup a few transofrmations that will determine how robust the lane tracking shall be. Let me explain.
+This is probably the most important section of this project as this is where we setup a few transofrmations that will determine how robust the lane tracking shall be. Allow me to explain.
 
 A common practice is to take the RGB image/video frame and convert that into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achivied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
 
@@ -50,10 +50,10 @@ The below images show the HSL transofrmations of our original images. We can see
 We now apply the appropriate color filter to filter as much as the non-lane marking features and convert to a grayscale image. The website http://colorizer.org/ can be very handy when adjusting the channel values manually and if you wnat to see how they correspond to different color spaces.
 
 
-2. Edge Detection
+### 2. Edge Detection
 With the right color space selected, we apply an edge detection filter(I used Canny for this project) to retrieve the edges. We also apply a gaussian blurring filter to smooth the images before passing through the Canny filter.
 
-3. Hough Transform
+### 3. Hough Transform
 We now define a region of interest for our edges image and pass that along to Hough transform. We use the lines returned from this transofrmation to draw lines on the image.
 
 To extrapolate the lines all the way, I made some changes to the 'draw_lines' method. First, I classified the lines into two buckets, left lane and right lane. I then calculated the slopes of each of tjose lines. I filtered out outliers from the slopes as debris on the road can looks like edges and hence could be used to draw the lane markings which could skew the lines. To avoid a lot of the jittery affect on the lane marking going from frame to frame, I calculated an average slope weighing in the length of the individual segments.
