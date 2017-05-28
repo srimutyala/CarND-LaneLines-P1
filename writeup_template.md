@@ -10,7 +10,7 @@
 [c1-HLS]: ./examples/challenge-1HLS.jpeg "c1-HLS"
 [c1-HSV]: ./examples/challenge-1inHSV.jpeg "c1-HSV"
 [c1-YUV]: ./examples/challenge-1inYUV.jpeg "c1-YUV"
-[c2-RBG]: ./examples/challenge-1inHLS.jpeg "c2-RGB"
+[c2-RGB]: ./examples/challenge-1inHLS.jpeg "c2-RGB"
 [c2-HLS]: ./examples/challenge-2inHLS.jpeg "c2-HLS"
 [c2-HSV]: ./examples/challenge-1inHSV.jpeg "c2-HSV"
 [c2-YUV]: ./examples/challenge-1inYUV.jpeg "c2-YUV"
@@ -29,14 +29,10 @@ This is probably the most important section of this project as this is where we 
 
 A common practice is to take the RGB image/video frame and convert that into a grayscale image to apply certain transformations. That's the path I chose too before encountering an issue with one of the road conditions under which it proved challenging to track the lanes. A section of the road was white and that threw the algorithm off which is doing the tracking based on color information. I tried changing the thresholds but good tracking was not achivied on that section of the road. However, the RGB color space is not the only space that's avilable for us in computer vision. These may not be necessary all the time but can transform the image enough to extract a particular fetaure set. Let's see if those transofrmations helps us for this road condition.
 
-![alt text][c1-RGB]
-![alt text][c2-RGB]
-![alt text][c1-YUV]
-![alt text][c2-YUV]
-![alt text][c1-HLS]
-![alt text][c2-HLS]
-![alt text][c1-HSV]
-![alt text][c2-HSV]
+![alt text][c1-RGB]![alt text][c2-RGB]
+![alt text][c1-YUV]![alt text][c2-YUV]
+![alt text][c1-HLS]![alt text][c2-HLS]
+![alt text][c1-HSV]![alt text][c2-HSV]
 
 
 
